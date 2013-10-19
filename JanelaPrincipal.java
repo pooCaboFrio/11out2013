@@ -1,11 +1,10 @@
-
 package principal;
 import javax.swing.*;
 
 public class JanelaPrincipal extends JFrame{
     JMenuBar mBar; 
-    JMenu m1,m2,m3; 
-    JMenuItem a11,a12,a31,a32;
+    JMenu m1,m2,m3,m31,m32; 
+    JMenuItem a11,a12;
     
     ButtonGroup gCor,gFonte;
     JRadioButtonMenuItem cVermelho,cAzul,cAmarelo,fVermelho,fAzul,fAmarelo;
@@ -31,8 +30,8 @@ public class JanelaPrincipal extends JFrame{
               
         a11         = new JMenuItem("Cliente"); 
         a12         = new JMenuItem("Filme"); 
-        a31         = new JMenuItem("Cor do Fundo");
-        a32         = new JMenuItem("Cor da Fonte");
+        m31         = new JMenu("Cor do Fundo");
+        m32         = new JMenu("Cor da Fonte");
               
         
         gCor        = new ButtonGroup();
@@ -45,13 +44,7 @@ public class JanelaPrincipal extends JFrame{
         fAzul       = new JRadioButtonMenuItem("Azul");
         fAmarelo    = new JRadioButtonMenuItem("Amarelo");
         
-        gCor.add(cVermelho);
-        gCor.add(cAzul);
-        gCor.add(cAmarelo);
-        
         p.setLayout(null);
-        
-        
         
         //ADD DO MENU
         mBar.add(m1);
@@ -62,26 +55,30 @@ public class JanelaPrincipal extends JFrame{
         m1.add(a11);
         m1.add(a12);
         
-        m3.add(a31);
-        m3.add(a32);
+        m3.add(m31);
+        m3.add(m32);
         
         //ADD SUBITENS O MENU LAYOUT
         
-        a31.add(cVermelho);
-        a31.add(fAzul);
-        a31.add(fAmarelo);
-        a32.add(fVermelho);
-        a32.add(fAzul);
-        a32.add(fAmarelo);
+        gCor.add(cVermelho);
+        gCor.add(cAzul);
+        gCor.add(cAmarelo);
+        gFonte.add(fVermelho);
+        gFonte.add(fAzul);
+        gFonte.add(fAmarelo);
+        
+        
+        m31.add(cVermelho);
+        m31.add(cAzul);
+        m31.add(cAmarelo);
+        m32.add(fVermelho);
+        m32.add(fAzul);
+        m32.add(fAmarelo);
         
         //ADD MENUBAR
         this.setJMenuBar(mBar);
       
         
-        
-        
-        
     } 
-          
-    
+
 }
