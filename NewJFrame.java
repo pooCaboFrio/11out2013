@@ -2,13 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication1;
+package principal;
+
+import javax.swing.*;
 
 /**
  *
  * @author aluno
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class NewJFrame extends JInternalFrame {
 
     /**
      * Creates new form NewJFrame
