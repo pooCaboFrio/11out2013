@@ -1,14 +1,18 @@
 import javax.swing.JList.*;
 import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
+
 import java.util.ArrayList;
 
 public class MainJmenu2 extends JFrame{
 //2Âº JMenu: 
-//-SeleÃ§Ã£o dos filmes e locaÃ§Ã£o: 
+//-Seleção dos filmes e locaÃ§Ã£o: 
 //RadioButton ou CheckBox para filtra e criar a lista com os filmes. 
-//-BotÃ£o Alugar 
-//-BotÃ£o Devolver 
+//-Botão Alugar 
+//-Botão Devolver 
    
    private JButton alugar, devolver,buscar;
    private JPanel p;
@@ -46,13 +50,27 @@ public class MainJmenu2 extends JFrame{
      
                 lista        = new JList();
                 lista.setVisible(true);
-
+                lista.setModel(defaultList);
+                
         lista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        lista.setModel(defaultList);
         
-        defaultList.addElement("Duro de Matar 4.0");
-
-  
+        //0 = ação, 1 = comédia, 2 = terror, 3 = romance
+        Filmes duroDeMatar = new Filmes("Duro de Matar 4.0",0);
+        Filmes aEraDoGelo = new Filmes("A Era do Gelo",1);
+        Filmes fear = new Filmes("Fear",2);
+        Filmes psEuTeAmo = new Filmes("PS: Eu te Amo",3);
+        
+        listaFilmes.add(duroDeMatar);
+        listaFilmes.add(aEraDoGelo);
+        listaFilmes.add(fear);
+        listaFilmes.add(psEuTeAmo);
+        
+        for (int i = 0; i < listaFilmes.size(); i++) {
+			if(listaFilmes.get(i).getCategoria() == i)
+				defaultList.addElement(listaFilmes.get(i).getNome()); //exibe todos os filmes
+        };
+        
+        
         
         p.add(cbAcao); p.add(cbRomance);
         p.add(cbTerror); p.add(cbComedia);
@@ -60,6 +78,16 @@ public class MainJmenu2 extends JFrame{
         p.add(buscar); p.add(alugar); p.add(devolver);
         this.add(p);
         
+        buscar.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e){
+        		if(cbAcao.isSelected() == true)
+        			
+        			defaultList.addElement(listaFilmes.get(1));
+        	}
+
+        	
+        	
+        });
                 
     }
     
