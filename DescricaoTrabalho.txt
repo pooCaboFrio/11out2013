@@ -1,0 +1,70 @@
+3 Grupos:
+
+-Equipe Janelas(Camada de Visão)
+
+	Implementar um menu para modificar as cores da JanelaPrincipal e as Fontes dos JMenus
+
+-Equipe Modelo(Camada de Modelo)
+
+Ou 2 Equipes:
+-4 Subequipes:
+	-1ºMENU (3)
+	-2ºMENU (3)
+	-3ºMENU e Janela Principal (3)
+	-Modelos(3)
+
+Uma Janela Principal com 3 menus:
+
+1ºJMenu = Cadastros: 
+	SubItens : 
+	-Cadastro de Pessoas e os campos do Dependente só aparecem se o checkBox referente ao dependente for marcado, se desmarcar eles ficam desabilitados
+	-Cadastro de Filmes
+
+2º JMenu:
+	-Seleção dos filmes e locação:
+		RadioButton ou CheckBox para filtra e criar a lista com os filmes.
+	-Botão Alugar
+	-Botão Devolver
+
+3º JMenu:
+	-Mudança da aparência da tela;
+	-JCheckBox para mudar a cor da tela, fundo e Fonte no mínimo 3 opções de cada
+
+Classe Cliente:
+Nome
+Data Nascimento
+Profissão
+CPF
+Idade
+Cidade
+Estado
+
+
+AlugarFilme
+DevolverFilme
+ReservarFilme
+
+Dependente
+Nome
+Data Nascimento
+Cidade(JComboBox)
+Estado(JComboBox)
+
+AlugarFilme
+DevolverFilme
+ReservarFilme
+
+Filme (***JList de filmes)
+Foto (Opcional)
+Título
+Genero(Radio)
+Classificação
+Duração
+Sinopse
+Ano
+
+***Problema : Como armazenar os filmes com o cliente ?
+ArrayList de filmes?
+A classe Filme deve possuir um objeto do tipo Cliente?
+
+
