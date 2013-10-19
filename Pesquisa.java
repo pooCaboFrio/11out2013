@@ -7,9 +7,13 @@ import java.awt.*;
 
 import java.util.ArrayList;
 
-public class MainJmenu2 extends JFrame{
-//2Âº JMenu: 
-//-Seleção dos filmes e locaÃ§Ã£o: 
+/**
+ *
+ * @author moraes
+ */
+public class Pesquisa extends JFrame{
+//2o JMenu: 
+//-Seleção dos filmes e locação: 
 //RadioButton ou CheckBox para filtra e criar a lista com os filmes. 
 //-Botão Alugar 
 //-Botão Devolver 
@@ -20,9 +24,11 @@ public class MainJmenu2 extends JFrame{
    private JList lista;
    private DefaultListModel defaultList;
    private JScrollPane scroll;
-   private ArrayList <Filmes> listaFilmes = new ArrayList();
    
-    MainJmenu2(){
+   private ArrayList <Filmes> listaFilmes = new ArrayList();
+   private boolean[] categorias = new boolean[4];
+   
+    Pesquisa(){
         this.setVisible(true);
          this.setSize(400,400);
       
@@ -41,8 +47,8 @@ public class MainJmenu2 extends JFrame{
         cbAcao      = new JCheckBox("Ação");
         cbRomance   = new JCheckBox("Romance");
         cbTerror    = new JCheckBox("Terror");
-        cbComedia   = new JCheckBox("ComÃ©dia");
- 
+        cbComedia   = new JCheckBox("Comédia");
+
         defaultList	= new DefaultListModel();
         lista		= new JList();
         
@@ -55,35 +61,46 @@ public class MainJmenu2 extends JFrame{
         lista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
         //0 = ação, 1 = comédia, 2 = terror, 3 = romance
-        Filmes duroDeMatar = new Filmes("Duro de Matar 4.0",0);
-        Filmes aEraDoGelo = new Filmes("A Era do Gelo",1);
-        Filmes fear = new Filmes("Fear",2);
-        Filmes psEuTeAmo = new Filmes("PS: Eu te Amo",3);
+        Filmes duroDeMatar 	= new Filmes("Duro de Matar 4.0",0);
+        Filmes aEraDoGelo 	= new Filmes("A Era do Gelo",1);
+        Filmes fear 		= new Filmes("Fear",2);
+        Filmes psEuTeAmo 	= new Filmes("PS: Eu te Amo",3);
         
         listaFilmes.add(duroDeMatar);
         listaFilmes.add(aEraDoGelo);
         listaFilmes.add(fear);
         listaFilmes.add(psEuTeAmo);
         
-        for (int i = 0; i < listaFilmes.size(); i++) {
-			if(listaFilmes.get(i).getCategoria() == i)
-				defaultList.addElement(listaFilmes.get(i).getNome()); //exibe todos os filmes
-        };
-        
-        
-        
-        p.add(cbAcao); p.add(cbRomance);
-        p.add(cbTerror); p.add(cbComedia);
+        p.add(cbAcao); p.add(cbComedia);
+        p.add(cbTerror); p.add(cbRomance);
         p.add(lista);
         p.add(buscar); p.add(alugar); p.add(devolver);
         this.add(p);
         
+ 
         buscar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e){
-        		if(cbAcao.isSelected() == true)
-        			
-        			defaultList.addElement(listaFilmes.get(1));
+        		defaultList.removeAllElements();
+                categorias[0] 	= cbAcao.isSelected();
+                categorias[1]	= cbComedia.isSelected();
+                categorias[2] 	= cbTerror.isSelected();
+                categorias[3]	= cbRomance.isSelected();
+        		for (int i = 0; i < categorias.length; i++) {
+
+            		System.out.println(categorias[i]);
+					if(categorias[i] == true){
+						for (int j = 0; j < listaFilmes.size(); j++) {
+							
+							defaultList.addElement(listaFilmes.get(i).getNome());
+						}
+					}
+						
+				}
+        		
+			
         	}
+        	
+        	
 
         	
         	
