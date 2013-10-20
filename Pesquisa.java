@@ -9,28 +9,25 @@ import java.util.ArrayList;
  * @author moraes
  */
 public class Pesquisa extends JFrame{
-//2o JMenu: 
-//-Seleção dos filmes e locação: 
-//RadioButton ou CheckBox para filtra e criar a lista com os filmes. 
-//-Botão Alugar 
-//-Botão Devolver 
    
    private JButton alugar, devolver,buscar;
-   private JPanel p;
+   private JPanel pBoxes,pList,pButtons;
    private JCheckBox cbAcao,cbRomance,cbTerror,cbComedia;
    private JList lista;
    private DefaultListModel defaultList;
    private JScrollPane scroll;
    
    private ArrayList <Filmes> listaFilmes = new ArrayList();
-   private boolean[] categorias = new boolean[4];
+   private boolean[] categorias = new boolean[4]; //numero de checkboxes
    
     Pesquisa(){
-        this.setVisible(true);
-         this.setSize(400,400);
-      
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    	this.setTitle("Pesquisar Filmes");
+    	
+    	this.setSize(420,250);
         this.setLayout(new FlowLayout());
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new GridLayout(1,4));
         init();
     }
     
@@ -40,7 +37,10 @@ public class Pesquisa extends JFrame{
         devolver    = new JButton("Devolver");
         buscar		= new JButton("Buscar");
         
-        p           = new JPanel();
+        pBoxes	    = new JPanel();
+        pList		= new JPanel();
+        pButtons	= new JPanel();
+        
         cbAcao      = new JCheckBox("Ação");
         cbRomance   = new JCheckBox("Romance");
         cbTerror    = new JCheckBox("Terror");
@@ -49,21 +49,23 @@ public class Pesquisa extends JFrame{
         defaultList	= new DefaultListModel();
         lista		= new JList();
         
-        p.setLayout(new GridLayout(4,4));
-     
-                lista        = new JList();
-                lista.setVisible(true);
-                lista.setModel(defaultList);
-                
+        pBoxes.setLayout(new FlowLayout(FlowLayout.TRAILING));
+        pBoxes.setLayout(new FlowLayout(FlowLayout.CENTER));
+        pBoxes.setLayout(new FlowLayout(FlowLayout.LEADING));
+        
+        lista        = new JList();
+        lista.setModel(defaultList);	              
         lista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
+        //Instancia os Filmes
         //0 = ação, 1 = comédia, 2 = terror, 3 = romance
         Filmes duroDeMatar 	= new Filmes("Duro de Matar 4.0",0);
-        Filmes homemDeFerro 	= new Filmes("Homem de Ferro",0);
+        Filmes homemDeFerro = new Filmes("Homem de Ferro",0);
         Filmes aEraDoGelo 	= new Filmes("A Era do Gelo",1);
         Filmes fear 		= new Filmes("Fear",2);
         Filmes psEuTeAmo 	= new Filmes("PS: Eu te Amo",3);
         
+        //Adiciona os objetos filmes ao Array
         listaFilmes.add(duroDeMatar);
         listaFilmes.add(homemDeFerro);
         listaFilmes.add(aEraDoGelo);
@@ -71,11 +73,15 @@ public class Pesquisa extends JFrame{
         listaFilmes.add(psEuTeAmo);
 
         
-        p.add(cbAcao); p.add(cbComedia);
-        p.add(cbTerror); p.add(cbRomance);
-        p.add(lista);
-        p.add(buscar); p.add(alugar); p.add(devolver);
-        this.add(p);
+        pBoxes.add(cbAcao); pBoxes.add(cbComedia);
+        pBoxes.add(cbTerror); pBoxes.add(cbRomance);
+        pList.add(lista);
+        pBoxes.add(buscar);     
+        pButtons.add(alugar); pButtons.add(devolver);
+        
+        this.add(pBoxes);
+        this.add(pList);
+        this.add(pButtons);
        
         
         buscar.addActionListener(new ActionListener(){
