@@ -56,11 +56,11 @@ public class Pesquisa extends JFrame{
         
         //Instancia os Filmes
         //0 = ação, 1 = comédia, 2 = terror, 3 = romance
-        Filmes duroDeMatar 	= new Filmes("Duro de Matar 4.0",0);
-        Filmes homemDeFerro = new Filmes("Homem de Ferro",0);
-        Filmes aEraDoGelo 	= new Filmes("A Era do Gelo",1);
-        Filmes fear 		= new Filmes("Fear",2);
-        Filmes psEuTeAmo 	= new Filmes("PS: Eu te Amo",3);
+        Filmes duroDeMatar 	= new Filmes("Duro de Matar 4.0","Ação");
+        Filmes homemDeFerro = new Filmes("Homem de Ferro","Ação");
+        Filmes aEraDoGelo 	= new Filmes("A Era do Gelo","Comédia,Ação");
+        Filmes fear 		= new Filmes("Fear","Ação,Terror");
+        Filmes psEuTeAmo 	= new Filmes("PS: Eu te Amo","Romance,Comédia");
         
         //Adiciona os objetos filmes ao Array
         listaFilmes.add(duroDeMatar);
@@ -80,28 +80,59 @@ public class Pesquisa extends JFrame{
         this.add(pList);
         this.add(pButtons);
         
-
+        //TODO objetos em mais de uma categoria aparecem mais de uma vez na lista  
+        alugar.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e){
+        		defaultList.clear();
+        		
+                categorias[0] 	= cbAcao.isSelected();
+                categorias[1]	= cbComedia.isSelected();
+                categorias[2] 	= cbTerror.isSelected();
+                categorias[3]	= cbRomance.isSelected();
+                
+                /* Somente para checar atraves do for no loop
+                 * Apenas inserindo os textos dos checkboxes para um vetor de Strings
+                 */
+                String[] strs 	= new String[4];	
+                strs[0]			= cbAcao.getText();
+                strs[1]			= cbComedia.getText();
+                strs[2]			= cbTerror.getText();
+                strs[3]			= cbRomance.getText();
+                
+        		for (int i = 0; i < strs.length; i++) { 
+        			if(categorias[i] == true){	
+        				for (int j = 0; j < listaFilmes.size(); j++) {	
+        					if(listaFilmes.get(j).getGenero().contains(strs[i]))
+        					defaultList.addElement(listaFilmes.get(j).getNome());			
+        				}
+        			} 
+        		}
+        	} 
+        }); 
+                
+        //OK
         buscar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e){
         		defaultList.clear();
+        		
+        		//Se um checkbox estiver marcado, ele verifica todos os filmes e exibe aquele cuja a categoria é igual ao checkbox 
                 categorias[0] 	= cbAcao.isSelected();
                 categorias[1]	= cbComedia.isSelected();
                 categorias[2] 	= cbTerror.isSelected();
                 categorias[3]	= cbRomance.isSelected();
         		for (int i = 0; i < categorias.length; i++) { //roda as categorias para checar se estao selecionadas
 
-        			if(categorias[i] == true){	//entra se a categoria do I estiver marcada
+        			if(categorias[i] == true){	//entra se a categoria do 'i'(checkbox) estiver como true
         				for (int j = 0; j < listaFilmes.size(); j++) {	//vai rodar por cada filme
         					if(listaFilmes.get(j).getCategoria() == i)	//se a categoria do filme for igual ao checkbox marcado
         						defaultList.addElement(listaFilmes.get(j).getNome());	
+        						
         					
-        					
-        				}	//fim for lista filmmes
+        				}	//fim for lista filmes
         			} //fim do if categorias
         		}
         	} //fim action performed        	
         }); //fim action listener
                 
-    }
-    
-}
+    }	//fim init   
+}	//fim classe
