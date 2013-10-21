@@ -21,8 +21,7 @@ public class Pesquisa extends JFrame{
    private boolean[] categorias = new boolean[4]; //numero de checkboxes
    
     Pesquisa(){
-    	this.setTitle("Pesquisar Filmes");
-    	
+    	this.setTitle("Pesquisar Filmes");  	
     	this.setSize(420,250);
         this.setLayout(new FlowLayout());
         this.setVisible(true);
@@ -46,15 +45,13 @@ public class Pesquisa extends JFrame{
         cbTerror    = new JCheckBox("Terror");
         cbComedia   = new JCheckBox("Comédia");
 
-        defaultList	= new DefaultListModel();
-        lista		= new JList();
-        
         pBoxes.setLayout(new FlowLayout(FlowLayout.TRAILING));
         pBoxes.setLayout(new FlowLayout(FlowLayout.CENTER));
         pBoxes.setLayout(new FlowLayout(FlowLayout.LEADING));
         
-        lista        = new JList();
-        lista.setModel(defaultList);	              
+        defaultList		= new DefaultListModel();
+        lista        	= new JList(defaultList);  
+
         lista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
         //Instancia os Filmes
@@ -82,8 +79,8 @@ public class Pesquisa extends JFrame{
         this.add(pBoxes);
         this.add(pList);
         this.add(pButtons);
-       
         
+
         buscar.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e){
         		defaultList.clear();
@@ -96,7 +93,8 @@ public class Pesquisa extends JFrame{
         			if(categorias[i] == true){	//entra se a categoria do I estiver marcada
         				for (int j = 0; j < listaFilmes.size(); j++) {	//vai rodar por cada filme
         					if(listaFilmes.get(j).getCategoria() == i)	//se a categoria do filme for igual ao checkbox marcado
-        						defaultList.addElement(listaFilmes.get(j).getNome());			
+        						defaultList.addElement(listaFilmes.get(j).getNome());	
+        					
         					
         				}	//fim for lista filmmes
         			} //fim do if categorias
