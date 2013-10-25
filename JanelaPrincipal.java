@@ -1,15 +1,33 @@
 package principal;
+import java.awt.*;
+import java.awt.color.ColorSpace;
+import java.awt.event.*;
 import javax.swing.*;
+
 
 public class JanelaPrincipal extends JFrame{
     JMenuBar mBar; 
     JMenu m1,m2,m3,m31,m32; 
     JMenuItem a11,a12;
     
+    Font fonte;
+    Color cor;
+    
+    NewJFrame jfPrincipal;
+    
     ButtonGroup gCor,gFonte;
     JRadioButtonMenuItem cVermelho,cAzul,cAmarelo,fVermelho,fAzul,fAmarelo;
     
-    JFrame p;
+    
+    public void setCor(Color c){
+        jfPrincipal.setBackground(c);
+        mBar.setBackground(c);
+    }
+    
+    public void setFonte(){
+        
+    }
+    
     
     public JanelaPrincipal(){ 
         iniciarComponentes(); 
@@ -20,19 +38,19 @@ public class JanelaPrincipal extends JFrame{
     } 
       
     public void iniciarComponentes(){ 
+        fonte       = new Font("Courier",Font.PLAIN,12);
+        cor         = new Color(0,0,0);
         
-        p           = new JFrame();
+        jfPrincipal = new NewJFrame();
         mBar        = new JMenuBar(); 
         m1          = new JMenu("Cadastro"); 
         m2          = new JMenu("Seleção de Filmes"); 
         m3          = new JMenu("Layout"); 
-        
               
         a11         = new JMenuItem("Cliente"); 
         a12         = new JMenuItem("Filme"); 
         m31         = new JMenu("Cor do Fundo");
         m32         = new JMenu("Cor da Fonte");
-              
         
         gCor        = new ButtonGroup();
         gFonte      = new ButtonGroup();
@@ -44,7 +62,7 @@ public class JanelaPrincipal extends JFrame{
         fAzul       = new JRadioButtonMenuItem("Azul");
         fAmarelo    = new JRadioButtonMenuItem("Amarelo");
         
-        p.setLayout(null);
+        
         
         //ADD DO MENU
         mBar.add(m1);
@@ -77,8 +95,44 @@ public class JanelaPrincipal extends JFrame{
         
         //ADD MENUBAR
         this.setJMenuBar(mBar);
+        
+        //ADD JFRAME E SETLAYOUT
+        jfPrincipal.setLayout(null);
+        jfPrincipal.setVisible(true);
+        this.add(jfPrincipal);
       
+        //LISTNERS
+        
+        cVermelho.addActionListener(
+                new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setCor(Color.red);
+                    }
+                }
+        );
+        cAzul.addActionListener(
+                new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setCor(Color.blue);
+                    }
+                }
+        );
+        cAmarelo.addActionListener(
+                new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setCor(Color.yellow);
+                    }
+                }
+        );
+        
+        
+        
+        
         
     } 
-
+          
+    
 }
