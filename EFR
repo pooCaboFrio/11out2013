@@ -1,0 +1,211 @@
+/*
+ * *******************
+ * Elielton Rodrigues
+ * Flavio Tavares
+ * Rafael Oliveira
+ * ******************* 
+ */
+
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class Alta extends Thread {
+    
+    
+    @Override
+    public void run(){
+        setPriority(Thread.MAX_PRIORITY);
+    }
+}
+====
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class Baixa extends Thread {
+    
+    @Override
+    public void run(){
+        setPriority(Thread.MIN_PRIORITY);
+        
+    }
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Event.*;
+/**
+ *
+ * @author aluno
+ */
+public class Janela extends JFrame {
+    public JButton start, stop;
+    public JList lista;
+    public JRadioButton alta, normal, baixa;
+    public JPanel p1;
+    
+    public Janela(){
+        iniciarComponentes();
+        this.setVisible(true);
+        this.setSize(200,200);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    public void iniciarComponentes(){
+        start = new JButton("Start");
+        stop = new JButton("Stop");
+        lista = new JList();
+        alta = new JRadioButton("Alta", false);
+        normal = new JRadioButton("Normal",false);
+        baixa = new JRadioButton("Baixa",false);
+        
+        p1 = new JPanel();
+        p1.setLayout(new FlowLayout());
+        
+        p1.add(start);
+        p1.add(stop);
+        p1.add(lista);
+        p1.add(alta);
+        p1.add(normal);
+        p1.add(baixa);
+        
+        
+        this.add(p1);
+        
+    }
+            
+    
+    
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class Media extends Thread {
+    
+    @Override
+    public void run(){
+        setPriority(Thread.NORM_PRIORITY);
+        
+    }
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class ThreadA extends Thread {
+
+    @Override
+    public void run() {
+        int i = 0;
+        while (i < 4) {
+            System.out.println("Teste A priority: " + getPriority());
+            i++;
+        }
+    }
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class ThreadB extends Thread {
+    @Override
+    public void run(){
+        
+        System.out.println("Teste B");
+    }
+    
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+import static java.lang.Thread.MAX_PRIORITY;
+
+/**
+ *
+ * @author aluno
+ */
+public class ThreadC extends Thread {
+
+    @Override
+    public void run() {
+        int i = 0;
+
+        while (i < 4) {
+            
+            System.out.println("Teste C");
+            i++;
+        }
+    }
+}
+==
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho;
+
+/**
+ *
+ * @author aluno
+ */
+public class Trabalho {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Janela test = new Janela();
+        
+        ThreadA test_a = new ThreadA();
+        ThreadB test_b = new ThreadB();        
+        ThreadC test_c = new ThreadC();
+        
+        test_a.setPriority(1);
+        test_b.setPriority(10);
+        test_c.setPriority(10);
+        
+        new Thread(new Thread(test_a)).start();        
+        new Thread(new Thread(test_b)).start();                      
+        new Thread(new Thread(test_c)).start();
+        
+    }
+}
