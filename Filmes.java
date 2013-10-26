@@ -11,6 +11,12 @@ public class Filmes {
 	private String nome,genero;
 	private int categoria; //0 = ação, 1 = comédia, 2 = terror, 3 = romance		
 
+	//TODO FALTA IMPLEMENTAR
+	private boolean acao = false;
+	private boolean comedia = false;
+	private boolean terror = false;
+	private boolean romance = false;
+	
 	//TODO escolher apenas um construtor posteriormente
 	Filmes(String nome,String genero){
 		this.nome = nome;
