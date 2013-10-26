@@ -69,13 +69,14 @@ public class Pesquisa extends JFrame{
         listaFilmes.add(fear);
         listaFilmes.add(psEuTeAmo);
 
-        
+        //Adiciona componentes aos paineis
         pBoxes.add(cbAcao); pBoxes.add(cbComedia);
         pBoxes.add(cbTerror); pBoxes.add(cbRomance);
         pList.add(lista);
         pBoxes.add(buscar);     
         pButtons.add(alugar); pButtons.add(devolver);
         
+        //Adiciona os 3 paineis ao JFrame
         this.add(pBoxes);
         this.add(pList);
         this.add(pButtons);
