@@ -1,6 +1,6 @@
 /**
  *	25/10/2013
- * @author Felipe,Lorena,Mathias
+ * @author Felipe,Lorena,Mathias,Leandro
  */
 package Swing;
 import java.awt.event.*;
